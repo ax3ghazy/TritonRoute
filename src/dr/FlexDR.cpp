@@ -1391,8 +1391,8 @@ void FlexDR::initDR(int size, bool enableDRC) {
         worker.setDRIter(0, bp);
         // set boundary pin
         worker.setEnableDRC(enableDRC);
-        worker.setFollowGuide(false);
-        //worker.setFollowGuide(true);
+        // worker.setFollowGuide(false);
+        worker.setFollowGuide(true);
         worker.setCost(DRCCOST, 0, 0, 0);
         worker.main();
         numQuickMarkers += worker.getNumQuickMarkers();
@@ -1851,15 +1851,17 @@ int FlexDR::main() {
   end();
   searchRepair(3,  7, -4, 4, DRCCOST, MARKERCOST,  0, 0, true, 0, false, 3); // true search and repair
   end();
-  searchRepair(4,  7,  0, 4, DRCCOST, MARKERCOST,  4, 2, true, 0, false, 3); // true search and repair
+  searchRepair(4,  7, -4, 4, DRCCOST, MARKERCOST,  0, 0, true, 0, false, 3); // true search and repair
   end();
-  searchRepair(5,  7, -4, 4, DRCCOST, MARKERCOST,  4, 2, true, 0, false, 3); // true search and repair
+  searchRepair(5,  7,  0, 4, DRCCOST, MARKERCOST,  4, 2, true, 0, false, 3); // true search and repair
   end();
-  searchRepair(6,  7,  0, 4, DRCCOST, MARKERCOST,  8, 2, true, 0, false, 3); // true search and repair
+  searchRepair(6,  7, -4, 4, DRCCOST, MARKERCOST,  4, 2, true, 0, false, 3); // true search and repair
   end();
-  searchRepair(7,  7, -4, 4, DRCCOST, MARKERCOST,  8, 2, true, 0, false, 3); // true search and repair
+  searchRepair(7,  7,  0, 4, DRCCOST, MARKERCOST,  8, 2, true, 0, false, 3); // true search and repair
   end();
-  searchRepair(8,  7,  0, 4, DRCCOST, MARKERCOST,  16, 2, true, 0, false, 3); // true search and repair
+  searchRepair(8,  7, -4, 4, DRCCOST, MARKERCOST,  8, 2, true, 0, false, 3); // true search and repair
+  end();
+  searchRepair(9,  7,  0, 4, DRCCOST, MARKERCOST,  16, 2, true, 0, false, 3); // true search and repair
   if (DRC_RPT_FILE != string("")) {
     reportDRC();
   }

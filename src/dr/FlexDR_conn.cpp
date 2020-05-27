@@ -2,7 +2,7 @@
 /*
  * Copyright (c) 2019, The Regents of the University of California
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
  *     * Redistributions of source code must retain the above copyright
@@ -13,7 +13,7 @@
  *     * Neither the name of the University nor the
  *       names of its contributors may be used to endorse or promote products
  *       derived from this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -33,7 +33,7 @@ using namespace std;
 using namespace fr;
 
 // copied from FlexDRWorker::initNets_searchRepair_pin2epMap_helper
-void FlexDR::checkConnectivity_pin2epMap_helper(frNet *net, const frPoint &bp, frLayerNum lNum, 
+void FlexDR::checkConnectivity_pin2epMap_helper(frNet *net, const frPoint &bp, frLayerNum lNum,
                                                 map<frBlockObject*, set<pair<frPoint, frLayerNum> >, frBlockObjectComp> &pin2epMap) {
   bool enableOutput = false;
   //bool enableOutput = true;
@@ -82,7 +82,7 @@ void FlexDR::checkConnectivity_pin2epMap(frNet* net, vector<frConnFig*> &netDROb
       auto lNum = obj->getLayerNum();
       if (enableOutput) {
        cout <<"(bp, ep) (" <<bp.x() / 2000.0 <<" ," <<bp.y() / 2000.0 <<") ("
-                           <<ep.x() / 2000.0 <<" ," <<ep.y() / 2000.0 <<") " 
+                           <<ep.x() / 2000.0 <<" ," <<ep.y() / 2000.0 <<") "
             <<getTech()->getLayer(lNum)->getName() <<endl;
       }
       if (enableOutput) {
@@ -195,8 +195,8 @@ void FlexDR::checkConnectivity_nodeMap_routeObjEnd(frNet* net, vector<frConnFig*
       nodeMap[make_pair(bp, lNum)].insert(i);
       nodeMap[make_pair(ep, lNum)].insert(i);
       if (enableOutput) {
-        cout <<"node idx = " <<i <<", (" <<bp.x() / 2000.0 <<", " <<bp.y() / 2000.0 <<") (" 
-                                         <<ep.x() / 2000.0 <<", " <<ep.y() / 2000.0 <<") " 
+        cout <<"node idx = " <<i <<", (" <<bp.x() / 2000.0 <<", " <<bp.y() / 2000.0 <<") ("
+                                         <<ep.x() / 2000.0 <<", " <<ep.y() / 2000.0 <<") "
              <<getTech()->getLayer(lNum)->getName() <<endl;
       }
     } else if (connFig->typeId() == frcVia) {
@@ -216,7 +216,7 @@ void FlexDR::checkConnectivity_nodeMap_routeObjEnd(frNet* net, vector<frConnFig*
     //  auto lNum = obj->getLayerNum();
     //  nodeMap[make_pair(bp, lNum)].insert(i);
     //  if (enableOutput) {
-    //    cout <<"node idx = " <<i <<", (" <<bp.x() / 2000.0 <<", " <<bp.y() / 2000.0 <<") RECT " 
+    //    cout <<"node idx = " <<i <<", (" <<bp.x() / 2000.0 <<", " <<bp.y() / 2000.0 <<") RECT "
     //         <<getTech()->getLayer(lNum)->getName() <<endl;
     //  }
     } else {
@@ -225,8 +225,8 @@ void FlexDR::checkConnectivity_nodeMap_routeObjEnd(frNet* net, vector<frConnFig*
   }
 }
 
-void FlexDR::checkConnectivity_nodeMap_routeObjSplit_helper(const frPoint &crossPt, 
-             frCoord trackCoord, frCoord splitCoord, frLayerNum lNum, 
+void FlexDR::checkConnectivity_nodeMap_routeObjSplit_helper(const frPoint &crossPt,
+             frCoord trackCoord, frCoord splitCoord, frLayerNum lNum,
              vector<map<frCoord, map<frCoord, pair<frCoord, int> > > > &mergeHelper,
              map<pair<frPoint, frLayerNum>, set<int> > &nodeMap) {
   auto it1 = mergeHelper[lNum].find(trackCoord);
@@ -310,7 +310,7 @@ void FlexDR::checkConnectivity_nodeMap_routeObjSplit(frNet* net, vector<frConnFi
       trackCoord = bp.x();
       splitCoord = bp.y();
       checkConnectivity_nodeMap_routeObjSplit_helper(crossPt, trackCoord, splitCoord, lNum, vertMergeHelper, nodeMap);
-      
+
       lNum = obj->getViaDef()->getLayer2Num();
       //find whether there is horz track at bp on layer2
       crossPt    = bp;
@@ -340,7 +340,7 @@ void FlexDR::checkConnectivity_nodeMap_routeObjSplit(frNet* net, vector<frConnFi
   }
 }
 
-void FlexDR::checkConnectivity_nodeMap_pin(frNet* net, 
+void FlexDR::checkConnectivity_nodeMap_pin(frNet* net,
                                            vector<frConnFig*> &netRouteObjs,
                                            vector<frBlockObject*> &netPins,
                                            map<frBlockObject*, set<pair<frPoint, frLayerNum> >, frBlockObjectComp> &pin2epMap,
@@ -352,7 +352,7 @@ void FlexDR::checkConnectivity_nodeMap_pin(frNet* net,
     for (auto &pr: locS) {
       nodeMap[pr].insert(currCnt);
       if (enableOutput) {
-        cout <<"pin idx = " <<currCnt <<", (" <<pr.first.x() <<", " <<pr.first.y() <<") " 
+        cout <<"pin idx = " <<currCnt <<", (" <<pr.first.x() <<", " <<pr.first.y() <<") "
              <<getTech()->getLayer(pr.second)->getName() <<endl;
       }
     }
@@ -360,7 +360,7 @@ void FlexDR::checkConnectivity_nodeMap_pin(frNet* net,
   }
 }
 
-void FlexDR::checkConnectivity_nodeMap(frNet* net, 
+void FlexDR::checkConnectivity_nodeMap(frNet* net,
                                        vector<frConnFig*> &netRouteObjs,
                                        vector<frBlockObject*> &netPins,
                                        map<frBlockObject*, set<pair<frPoint, frLayerNum> >, frBlockObjectComp> &pin2epMap,
@@ -378,7 +378,7 @@ void FlexDR::checkConnectivity_nodeMap(frNet* net,
         frPoint bp, ep;
         auto lNum = obj->getLayerNum();
         obj->getPoints(bp, ep);
-        cout <<"#" <<idx <<" (" 
+        cout <<"#" <<idx <<" ("
              <<bp.x() * 1.0/ getDesign()->getTopBlock()->getDBUPerUU() <<", "
              <<bp.y() * 1.0/ getDesign()->getTopBlock()->getDBUPerUU() <<") ("
              <<ep.x() * 1.0/ getDesign()->getTopBlock()->getDBUPerUU() <<", "
@@ -388,7 +388,7 @@ void FlexDR::checkConnectivity_nodeMap(frNet* net,
         auto obj = static_cast<frVia*>(connFig);
         frPoint bp;
         obj->getOrigin(bp);
-        cout <<"#" <<idx <<" (" 
+        cout <<"#" <<idx <<" ("
              <<bp.x() * 1.0/ getDesign()->getTopBlock()->getDBUPerUU() <<", "
              <<bp.y() * 1.0/ getDesign()->getTopBlock()->getDBUPerUU() <<") "
              <<obj->getViaDef()->getName() <<endl;
@@ -399,7 +399,7 @@ void FlexDR::checkConnectivity_nodeMap(frNet* net,
       //  obj->getOrigin(bp);
       //  frBox box;
       //  obj->getOffsetBox(box);
-      //  cout <<"#" <<idx <<" (" 
+      //  cout <<"#" <<idx <<" ("
       //       <<bp.x() * 1.0/ getDesign()->getTopBlock()->getDBUPerUU() <<", "
       //       <<bp.y() * 1.0/ getDesign()->getTopBlock()->getDBUPerUU() <<") RECT ("
       //       <<box.left()   * 1.0 / getDesign()->getTopBlock()->getDBUPerUU() <<" "
@@ -425,7 +425,7 @@ void FlexDR::checkConnectivity_nodeMap(frNet* net,
   }
 }
 
-bool FlexDR::checkConnectivity_astar(frNet* net, vector<bool> &adjVisited, vector<int> &adjPrevIdx, 
+bool FlexDR::checkConnectivity_astar(frNet* net, vector<bool> &adjVisited, vector<int> &adjPrevIdx,
                                      map<pair<frPoint, frLayerNum>, set<int> > &nodeMap, int &gCnt, int &nCnt) {
   //bool enableOutput = true;
   bool enableOutput = false;
@@ -540,7 +540,7 @@ bool FlexDR::checkConnectivity_astar(frNet* net, vector<bool> &adjVisited, vecto
     adjVisited = onPathIdx;
   }
   if (enableOutput) {
-  cout <<"stat: " <<net->getName() <<" #guide/#pin/#unused = " <<gCnt <<"/" <<nCnt - gCnt <<"/" 
+  cout <<"stat: " <<net->getName() <<" #guide/#pin/#unused = " <<gCnt <<"/" <<nCnt - gCnt <<"/"
        <<nCnt - count(adjVisited.begin(), adjVisited.end(), true) <<endl;
   }
   int pinVisited = count(adjVisited.begin() + gCnt, adjVisited.end(), true);
@@ -567,7 +567,7 @@ void FlexDR::checkConnectivity_final(frNet *net, vector<frConnFig*> &netRouteObj
                                      map<pair<frPoint, frLayerNum>, set<int> > &nodeMap) {
   //bool enableOutput = true;
   bool enableOutput = false;
-  
+
   auto regionQuery = getRegionQuery();
 
   // from obj to pt
@@ -615,7 +615,7 @@ void FlexDR::checkConnectivity_final(frNet *net, vector<frConnFig*> &netRouteObj
       exit(1);
     }
   }
-  
+
   // rebuild reverseNodeMap
   reverseNodeMap.clear();
   for (auto &[pr, idxS]: nodeMap) {
@@ -698,6 +698,7 @@ void FlexDR::checkConnectivity_final(frNet *net, vector<frConnFig*> &netRouteObj
 void FlexDR::checkConnectivity() {
   //cout <<"checking connectivity " <<endl;
 
+  cout << "Checking connectivity..." << endl;
   bool isWrong = false;
   for (auto &uPtr: getDesign()->getTopBlock()->getNets()) {
     auto net = uPtr.get();
@@ -706,7 +707,7 @@ void FlexDR::checkConnectivity() {
     //}
     vector<frConnFig*> netDRObjs;
     checkConnectivity_initDRObjs(net, netDRObjs);
-    
+
     map<frBlockObject*, set<pair<frPoint, frLayerNum> >, frBlockObjectComp> pin2epMap;
     checkConnectivity_pin2epMap(net, netDRObjs, pin2epMap);
 
@@ -723,7 +724,7 @@ void FlexDR::checkConnectivity() {
       isWrong = true;
     } else {
       // get lock
-      // delete / shrink netRouteObjs, 
+      // delete / shrink netRouteObjs,
       checkConnectivity_final(net, netDRObjs, netPins, adjVisited, gCnt, nCnt, nodeMap);
       // release lock
     }
@@ -734,4 +735,3 @@ void FlexDR::checkConnectivity() {
     exit(1);
   }
 }
-
