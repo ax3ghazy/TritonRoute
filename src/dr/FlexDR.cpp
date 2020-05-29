@@ -1391,8 +1391,8 @@ void FlexDR::initDR(int size, bool enableDRC) {
         worker.setDRIter(0, bp);
         // set boundary pin
         worker.setEnableDRC(enableDRC);
-        // worker.setFollowGuide(false);
-        worker.setFollowGuide(true);
+        worker.setFollowGuide(false);
+        //worker.setFollowGuide(true);
         worker.setCost(DRCCOST, 0, 0, 0);
         worker.main();
         numQuickMarkers += worker.getNumQuickMarkers();
@@ -1845,9 +1845,7 @@ int FlexDR::main() {
   //end();
   //searchRepair(1,  7, -4,  1, DRCCOST, 0,          0, 0, true, 1, false, 0, true); // test mode
   end();
-  searchRepair(1,  7, -4, 1, DRCCOST, 0,          0, 0, true, 1, false, 0); // func as fully rerouting iter, no marker cost
-  end();
-  searchRepair(2,  7, -4, 1, 2*DRCCOST, MARKERCOST/2,  0, 0, true, 1, false, 0); // func as fully rerouting iter, no marker cost
+  searchRepair(1,  7, -4, 1, 2*DRCCOST, 0,          0, 0, true, 1, false, 0); // func as fully rerouting iter, no marker cost
   end();
   searchRepair(3,  7,  0, 4, DRCCOST, MARKERCOST,  0, 0, true, 0, false, 3); // true search and repair
   end();
